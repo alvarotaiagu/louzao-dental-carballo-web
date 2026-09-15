@@ -557,13 +557,14 @@ function Section2() {
               <div
                 key={svc.name}
                 className={`flex-1 min-w-[calc(50%-4px)] md:min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${
-                  svc.active ? 'bg-white/90 backdrop-blur-md' : 'bg-black/35 backdrop-blur-xl'
+                  svc.active ? 'bg-white/90 backdrop-blur-md' : 'bg-black/60 backdrop-blur-xl'
                 }`}
               >
                 <h3
                   className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line ${
                     svc.active ? 'text-black' : 'text-white'
                   }`}
+                  style={svc.active ? undefined : { textShadow: '0 1px 6px rgba(0,0,0,0.45)' }}
                 >
                   {svc.name}
                 </h3>
@@ -689,9 +690,12 @@ function Section3() {
             <a
               href="#opiniones"
               aria-label="Ver opiniones de pacientes"
-              className="flex-1 bg-black/35 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:bg-black/50 transition-colors"
+              className="flex-1 bg-black/60 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:bg-black/70 transition-colors"
             >
-              <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
+              <h4
+                className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7"
+                style={{ textShadow: '0 1px 6px rgba(0,0,0,0.45)' }}
+              >
                 Cuidados
                 <br />
                 para tu
