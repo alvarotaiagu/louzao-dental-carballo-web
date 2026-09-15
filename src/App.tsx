@@ -557,7 +557,7 @@ function Section2() {
               <div
                 key={svc.name}
                 className={`flex-1 min-w-[calc(50%-4px)] md:min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${
-                  svc.active ? 'bg-white/90 backdrop-blur-md' : 'bg-white/20 backdrop-blur-xl'
+                  svc.active ? 'bg-white/90 backdrop-blur-md' : 'bg-black/35 backdrop-blur-xl'
                 }`}
               >
                 <h3
@@ -669,24 +669,28 @@ function Section3() {
           <img src={SECTION3_BG} alt="Paciente sonriendo" className="w-full h-full object-cover" />
 
           <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
-            <div className="flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
-              <h4 className="text-lg md:text-2xl font-bold text-black leading-5 md:leading-7">
+            <a
+              href={CLINIC_PHONE_TEL}
+              aria-label="Llamar para pedir tu primera cita"
+              className="group flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:bg-black transition-colors"
+            >
+              <h4 className="text-lg md:text-2xl font-bold text-black leading-5 md:leading-7 group-hover:text-white transition-colors">
                 Tu Primera
                 <br />
                 Visita con
                 <br />
                 Nosotros
               </h4>
-              <a
-                href={CLINIC_PHONE_TEL}
-                aria-label="Llamar para pedir cita"
-                className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors"
-              >
+              <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-black text-black flex items-center justify-center group-hover:border-white group-hover:text-white transition-colors">
                 <ArrowIcon />
-              </a>
-            </div>
+              </span>
+            </a>
 
-            <div className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
+            <a
+              href="#opiniones"
+              aria-label="Ver opiniones de pacientes"
+              className="flex-1 bg-black/35 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:bg-black/50 transition-colors"
+            >
               <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
                 Cuidados
                 <br />
@@ -694,14 +698,10 @@ function Section3() {
                 <br />
                 Sonrisa
               </h4>
-              <a
-                href="#opiniones"
-                aria-label="Ver opiniones de pacientes"
-                className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors"
-              >
+              <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white text-white flex items-center justify-center">
                 <ArrowIcon />
-              </a>
-            </div>
+              </span>
+            </a>
           </div>
         </div>
       </div>
@@ -738,7 +738,7 @@ function ReviewsSection() {
             rel="noopener noreferrer"
             className="px-6 py-3 bg-black rounded-full text-white text-sm font-semibold hover:scale-105 transition-transform"
           >
-            ★ 5,0 · 10 reseñas en Google
+            ★ 5,0 en Google
           </a>
         </div>
 
@@ -822,7 +822,7 @@ function ContactFooter() {
             rel="noopener noreferrer"
             className="inline-block mt-4 md:mt-6 text-sm font-semibold text-white/80 hover:text-white"
           >
-            ★ 5,0 · 10 reseñas en Google
+            ★ 5,0 en Google
           </a>
         </div>
 
