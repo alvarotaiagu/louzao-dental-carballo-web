@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode, type RefObject } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+  type ReactNode,
+  type RefObject,
+} from 'react';
 
 // ---------------------------------------------------------------------------
 // DATA — Clínica Dental Louzao, Carballo (A Coruña)
@@ -45,6 +53,18 @@ const services: { name: string; num: string | null; active: boolean }[] = [
   { name: 'Empastes y\nCaries', num: '03', active: false },
   { name: 'Ortodoncia', num: null, active: false },
 ];
+
+// Scroll suave solo para clics en enlaces de navegación internos — NO como
+// `scroll-behavior: smooth` global en CSS, que en móvil interfiere con el
+// scroll táctil por inercia y provoca un pequeño salto hacia atrás justo al
+// cambiar de dirección.
+function scrollToAnchor(e: MouseEvent, href: string) {
+  const id = href.slice(1);
+  const el = document.getElementById(id);
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 const navLinks: { label: string; href: string }[] = [
   { label: 'Inicio', href: '#inicio' },
@@ -355,7 +375,10 @@ function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  scrollToAnchor(e, link.href);
+                  setMenuOpen(false);
+                }}
                 className="text-4xl font-bold text-black hover:text-neutral-500 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
                 style={{
                   opacity: menuOpen ? 1 : 0,
@@ -722,6 +745,7 @@ function Section3() {
 
             <a
               href="#opiniones"
+              onClick={(e) => scrollToAnchor(e, '#opiniones')}
               aria-label="Ver opiniones de pacientes"
               className="flex-1 bg-black/60 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:bg-black/70 transition-colors"
             >
