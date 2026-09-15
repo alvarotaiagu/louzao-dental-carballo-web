@@ -46,7 +46,35 @@ const services: { name: string; num: string | null; active: boolean }[] = [
   { name: 'Ortodoncia', num: null, active: false },
 ];
 
-const navLinks = ['Inicio', 'Servicios', 'Sobre Nosotros', 'Opiniones', 'Contacto'];
+const navLinks: { label: string; href: string }[] = [
+  { label: 'Inicio', href: '#inicio' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Sobre Nosotros', href: '#sobre-nosotros' },
+  { label: 'Opiniones', href: '#opiniones' },
+  { label: 'Contacto', href: '#contacto' },
+];
+
+// Reseñas reales de Google (Clínica Dental Louzao, 5,0★ sobre 10 reseñas)
+const reviews: { name: string; meta: string; text: string; avatarColor: string }[] = [
+  {
+    name: 'Paula Vila Vieito',
+    meta: '1 reseña · hace un año',
+    text: 'Muy buen trato, puntuales y muy profesionales, con los niños tienen un trato inmejorable, super cercanas.',
+    avatarColor: '#e8734a',
+  },
+  {
+    name: 'Ana Iglesias Fernández',
+    meta: '3 reseñas · hace 3 años',
+    text: 'Gran atención al paciente y estupendo equipo profesional.',
+    avatarColor: '#1a9e6d',
+  },
+  {
+    name: 'The Reignman',
+    meta: '3 reseñas · hace 3 años',
+    text: 'Estupenda profesional, muy cercana y amable.',
+    avatarColor: '#3a3a3a',
+  },
+];
 
 // ---------------------------------------------------------------------------
 // HOOKS
@@ -187,7 +215,7 @@ function MaskedCard({ bgImage, position, imageWidth, focalX, className, children
       ref={cardRef}
       className={className}
       style={{
-        backgroundColor: '#e7e5e4',
+        backgroundColor: '#fafaf9',
         backgroundImage: `url(${bgImage})`,
         backgroundSize: `auto ${position.sh}px`,
         backgroundPosition: `-${position.x + focalOffset}px -${position.y}px`,
@@ -314,8 +342,8 @@ function Navbar() {
           <div className="flex flex-col justify-center h-full px-8 gap-1">
             {navLinks.map((link, i) => (
               <a
-                key={link}
-                href="#"
+                key={link.label}
+                href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="text-4xl font-bold text-black hover:text-neutral-500 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
                 style={{
@@ -324,7 +352,7 @@ function Navbar() {
                   transitionDelay: menuOpen ? `${100 + i * 60}ms` : '0ms',
                 }}
               >
-                {link}
+                {link.label}
               </a>
             ))}
 
@@ -371,11 +399,12 @@ function Section1() {
 
   return (
     <section
+      id="inicio"
       ref={(el) => {
         sectionRef.current = el;
         s1Reveal.containerRef.current = el;
       }}
-      className="h-screen w-full overflow-hidden flex flex-col pt-24 md:pt-24 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
+      className="min-h-screen w-full overflow-hidden flex flex-col pt-24 md:pt-24 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
     >
       {featureBars.map((label, i) => (
         <MaskedCard
@@ -451,11 +480,12 @@ function Section2() {
 
   return (
     <section
+      id="servicios"
       ref={(el) => {
         sectionRef.current = el;
         s2Reveal.containerRef.current = el;
       }}
-      className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
+      className="min-h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2 scroll-mt-20 md:scroll-mt-24"
     >
       <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto_auto] md:grid-rows-[1fr_1fr_0.8fr] gap-1.5 md:gap-2">
         <MaskedCard
@@ -582,8 +612,9 @@ function Section3() {
 
   return (
     <section
+      id="sobre-nosotros"
       ref={s3Reveal.containerRef}
-      className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
+      className="min-h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2 scroll-mt-20 md:scroll-mt-24"
     >
       <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
         <div className="flex flex-col gap-1.5 md:gap-2">
@@ -646,9 +677,13 @@ function Section3() {
                 <br />
                 Nosotros
               </h4>
-              <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center">
+              <a
+                href={CLINIC_PHONE_TEL}
+                aria-label="Llamar para pedir cita"
+                className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors"
+              >
                 <ArrowIcon />
-              </span>
+              </a>
             </div>
 
             <div className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
@@ -659,11 +694,78 @@ function Section3() {
                 <br />
                 Sonrisa
               </h4>
-              <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center">
-                <ArrowIcon className="text-white" />
-              </span>
+              <a
+                href="#opiniones"
+                aria-label="Ver opiniones de pacientes"
+                className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors"
+              >
+                <ArrowIcon />
+              </a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// OPINIONES — reseñas reales de Google
+// ---------------------------------------------------------------------------
+
+function ReviewsSection() {
+  const reveal = useStaggeredReveal();
+
+  return (
+    <section
+      id="opiniones"
+      ref={reveal.containerRef}
+      className="w-full px-3 md:px-5 pt-1.5 md:pt-2 pb-1.5 md:pb-2 scroll-mt-20 md:scroll-mt-24"
+    >
+      <div className="rounded-xl md:rounded-2xl bg-stone-50 p-5 md:p-10" style={reveal.getAnimStyle(0)}>
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-6 md:mb-10">
+          <div>
+            <p className="text-xs md:text-sm font-semibold text-black mb-1 md:mb-2">Opiniones</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-[0.95] text-black">
+              Lo que dicen
+              <br />
+              nuestros pacientes
+            </h2>
+          </div>
+          <a
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-black rounded-full text-white text-sm font-semibold hover:scale-105 transition-transform"
+          >
+            ★ 5,0 · 10 reseñas en Google
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+          {reviews.map((r) => (
+            <div
+              key={r.name}
+              className="bg-white rounded-xl md:rounded-2xl p-5 md:p-6 flex flex-col justify-between min-h-[180px]"
+            >
+              <div>
+                <span className="text-amber-500 text-sm tracking-wider">★★★★★</span>
+                <p className="mt-3 text-sm md:text-base text-black leading-relaxed">&ldquo;{r.text}&rdquo;</p>
+              </div>
+              <div className="flex items-center gap-3 mt-5">
+                <span
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0"
+                  style={{ backgroundColor: r.avatarColor }}
+                >
+                  {r.name.charAt(0)}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-black leading-tight">{r.name}</p>
+                  <p className="text-xs text-black/50 leading-tight">{r.meta}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -678,7 +780,11 @@ function ContactFooter() {
   const reveal = useStaggeredReveal();
 
   return (
-    <section ref={reveal.containerRef} className="w-full px-3 md:px-5 pt-1.5 md:pt-2 pb-4 md:pb-6">
+    <section
+      id="contacto"
+      ref={reveal.containerRef}
+      className="w-full px-3 md:px-5 pt-1.5 md:pt-2 pb-4 md:pb-6 scroll-mt-20 md:scroll-mt-24"
+    >
       <div
         className="rounded-xl md:rounded-2xl bg-black text-white p-6 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
         style={reveal.getAnimStyle(0)}
@@ -753,6 +859,7 @@ function App() {
       <Section1 />
       <Section2 />
       <Section3 />
+      <ReviewsSection />
       <ContactFooter />
     </div>
   );
