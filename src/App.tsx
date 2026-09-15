@@ -438,7 +438,7 @@ function Section1() {
         sectionRef.current = el;
         s1Reveal.containerRef.current = el;
       }}
-      className="min-h-screen w-full overflow-hidden flex flex-col pt-24 md:pt-24 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
+      className="min-h-svh w-full overflow-hidden flex flex-col pt-24 md:pt-24 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
     >
       {featureBars.map((label, i) => (
         <MaskedCard
@@ -529,7 +529,7 @@ function Section2() {
         sectionRef.current = el;
         s2Reveal.containerRef.current = el;
       }}
-      className="min-h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2 scroll-mt-20 md:scroll-mt-24"
+      className="min-h-svh w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2 scroll-mt-20 md:scroll-mt-24"
     >
       <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto_auto] md:grid-rows-[1fr_1fr_0.8fr] gap-1.5 md:gap-2">
         <MaskedCard
@@ -671,7 +671,7 @@ function Section3() {
     <section
       id="sobre-nosotros"
       ref={s3Reveal.containerRef}
-      className="min-h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2 scroll-mt-20 md:scroll-mt-24"
+      className="min-h-svh w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2 scroll-mt-20 md:scroll-mt-24"
     >
       <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
         <div className="flex flex-col gap-1.5 md:gap-2">
