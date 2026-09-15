@@ -76,6 +76,17 @@ const reviews: { name: string; meta: string; text: string; avatarColor: string }
   },
 ];
 
+// Sombras de texto para garantizar contraste sobre las fotos compartidas
+// (las "masked cards" pueden mostrar zonas claras u oscuras según el
+// recorte/viewport, así que el texto no puede depender de que esa zona
+// concreta tenga siempre el brillo esperado).
+const TEXT_SHADOW_ON_LIGHT: CSSProperties = {
+  textShadow: '0 1px 3px rgba(255,255,255,0.85), 0 1px 10px rgba(255,255,255,0.5)',
+};
+const TEXT_SHADOW_ON_DARK: CSSProperties = {
+  textShadow: '0 1px 3px rgba(0,0,0,0.55), 0 1px 10px rgba(0,0,0,0.35)',
+};
+
 // ---------------------------------------------------------------------------
 // HOOKS
 // ---------------------------------------------------------------------------
@@ -417,7 +428,10 @@ function Section1() {
           className="w-full h-14 md:h-20 shrink-0 rounded-xl md:rounded-2xl overflow-hidden relative"
           style={s1Reveal.getAnimStyle(i)}
         >
-          <span className="flex items-center justify-center h-full text-black text-lg md:text-3xl font-bold text-center relative z-10">
+          <span
+            className="flex items-center justify-center h-full text-black text-lg md:text-3xl font-bold text-center relative z-10"
+            style={TEXT_SHADOW_ON_LIGHT}
+          >
             {label}
           </span>
         </MaskedCard>
@@ -432,17 +446,23 @@ function Section1() {
         className="w-full flex-1 min-h-0 rounded-xl md:rounded-2xl overflow-hidden relative"
         style={s1Reveal.getAnimStyle(3)}
       >
-        <p className="absolute top-4 left-4 md:top-7 md:left-7 text-black text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
+        <p
+          className="absolute top-4 left-4 md:top-7 md:left-7 text-black text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10"
+          style={TEXT_SHADOW_ON_LIGHT}
+        >
           Cuidamos tu sonrisa con un trato cercano
           <br />
           y la tecnología dental más actual
         </p>
 
         <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
-          <span className="block text-black text-xs md:text-sm font-semibold mb-1 md:mb-2">
+          <span className="block text-black text-xs md:text-sm font-semibold mb-1 md:mb-2" style={TEXT_SHADOW_ON_LIGHT}>
             Clínica dental de confianza en Carballo
           </span>
-          <h1 className="text-black text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
+          <h1
+            className="text-black text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight"
+            style={TEXT_SHADOW_ON_LIGHT}
+          >
             Dental
             <br />
             Louzao
@@ -452,6 +472,7 @@ function Section1() {
         <a
           href={CLINIC_PHONE_TEL}
           className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10"
+          style={TEXT_SHADOW_ON_DARK}
         >
           Pide tu Cita
         </a>
@@ -497,10 +518,16 @@ function Section2() {
           className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
           style={s2Reveal.getAnimStyle(0)}
         >
-          <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-2xl md:text-3xl font-bold z-10">
+          <h2
+            className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-2xl md:text-3xl font-bold z-10"
+            style={TEXT_SHADOW_ON_DARK}
+          >
             Nuestra Clínica
           </h2>
-          <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-black text-xs md:text-sm font-semibold z-10">
+          <p
+            className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-black text-xs md:text-sm font-semibold z-10"
+            style={TEXT_SHADOW_ON_DARK}
+          >
             Atención dental de calidad en el centro de Carballo
           </p>
         </MaskedCard>
@@ -514,7 +541,10 @@ function Section2() {
           className="md:row-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[200px] md:min-h-0"
           style={s2Reveal.getAnimStyle(1)}
         >
-          <p className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10">
+          <p
+            className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10"
+            style={TEXT_SHADOW_ON_DARK}
+          >
             Si buscas un trato cercano y profesional,
             <br />
             llámanos y resolvemos todas tus dudas.
@@ -536,7 +566,10 @@ function Section2() {
           className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
           style={s2Reveal.getAnimStyle(2)}
         >
-          <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10">
+          <h3
+            className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10"
+            style={TEXT_SHADOW_ON_DARK}
+          >
             Cuidado
             <br />
             Dental
